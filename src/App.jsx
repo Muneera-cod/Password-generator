@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
+import { IconClipboardCopy} from '@tabler/icons-react';
 import { UppercaseLetters,LowercaseLetters,Numbers,SpecialCharacters } from './NumCharSpch';
 function App() {
     const [password,setPassword]=useState("");
@@ -15,36 +16,70 @@ function App() {
    const generatePwd=()=>{
      let passwordlist=""
      if(!includeLower && !includeUpper && !includeSymbol && !number){
-      toast.error('Select atleast one checkbox',{
-        position: "top-right",
-        autoClose:1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,}
-      )
+            toast.error('Select atleast one checkbox',{
+              position: "top-right",
+              autoClose:1000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,}
+            )
    
-     }else{
-         if(includeLower){
-           passwordlist=passwordlist+LowercaseLetters
-         }
-         if(includeUpper){
-          passwordlist=passwordlist+UppercaseLetters
-         }
-         if(includeSymbol){
-          passwordlist=passwordlist+SpecialCharacters
-         }
-         if(number){
-          passwordlist=passwordlist+Numbers
-         }
-         setPassword(createPassword(passwordlist))
-         console.log(password)
-       
+     }
+     else{
+            if(includeLower){
+              passwordlist=passwordlist+LowercaseLetters
+            }
+            if(includeUpper){
+              passwordlist=passwordlist+UppercaseLetters
+            }
+            if(includeSymbol){
+              passwordlist=passwordlist+SpecialCharacters
+            }
+            if(number){
+              passwordlist=passwordlist+Numbers
+            }
+            setPassword(createPassword(passwordlist))
+            console.log(password)
+          
      }
    }
    const createPassword=(passwordlist)=>{
-    if(passwordLength==='' || passwordLength==='Must be greater than 7 and less than 20'){
-      toast.error('Select password length',{
+       if(passwordLength==='' || passwordLength==='Must be greater than 7 and less than 20'){
+                  toast.error('Select password length',{
+                    position: "top-right",
+                    autoClose:1000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,}
+                  )
+            }
+        else{
+          
+                let generatedPwd =""
+                const passwordlistLength= passwordlist.length
+                for (let i=0;i<passwordLength;i++){
+                    const randomIndex=Math.round(Math.random() * passwordlistLength)
+                    generatedPwd=generatedPwd + passwordlist.charAt(randomIndex)
+                }
+                toast.success('Generated Password Successfully',{
+                  position: "top-right",
+                  autoClose:1000,
+                  hideProgressBar: true,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,}
+                )
+                return generatedPwd
+           }
+       }
+       const copy=(password)=>{
+           navigator.clipboard.writeText(password)
+       }
+  const handlecopy=()=>{
+    if(password===''){
+      toast.error('No password to copy',{
         position: "top-right",
         autoClose:1000,
         hideProgressBar: true,
@@ -52,25 +87,19 @@ function App() {
         pauseOnHover: true,
         draggable: true,}
       )
-   }else{
-    
-      let generatedPwd =""
-      const passwordlistLength= passwordlist.length
-      for (let i=0;i<passwordLength;i++){
-          const randomIndex=Math.round(Math.random() * passwordlistLength)
-          generatedPwd=generatedPwd + passwordlist.charAt(randomIndex)
-      }
-      toast.success('Generated Password Successfully',{
-        position: "top-right",
-        autoClose:1000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,}
-      )
-      return generatedPwd
     }
-   }
+    else{
+      copy(password)
+      toast.success('Password copied to clipboard',{
+        position: "top-right",
+        autoClose:1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,}
+      )
+    }
+  }
     
     const options = Array.from({ length: 13 }, (_, i) => i+7);
   return (
@@ -78,7 +107,7 @@ function App() {
       <ToastContainer />
       <div className='inner-container'>
         <div className='input-div'>
-        <div className='screen'>{password}</div>
+        <div className='screen'><p>{password}</p><IconClipboardCopy onClick={handlecopy}/></div>
 
             <label htmlFor='length'><p>Password length:</p> <select id='length' value={passwordLength} onChange={(e)=>setPasswordLength(e.target.value)} >
                                        <option>Must be greater than 7 and less than 20</option>

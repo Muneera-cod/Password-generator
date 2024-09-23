@@ -6,7 +6,7 @@ body{
 .outer-container{
   min-width: 100vw;
   min-height: 100vh;
-  background-color:rgb(202, 206, 206);
+  background-color:rgb(245, 249, 249);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,7 +14,7 @@ body{
 .inner-container{
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: fit-content;
   height: 50%;
   background:white;
   justify-content: space-between;
@@ -24,16 +24,21 @@ body{
 }
 .input-div{
  
-  width: 90%;
+  width: fit-content;
   height: 90%;
   display: flex;
   flex-direction: column;
   padding: 10px 30px;
+  
+}
+.input-div div:first-of-type{
+  align-items: center;
+  justify-content: center;
 }
 .input-div label{
   display: flex;
   justify-content: space-between;
-  padding-inline: 20px;
+  column-gap: 100px;
   &:hover{
     background: rgb(236, 235, 237);
   }
@@ -51,12 +56,13 @@ body{
 }
 .screen{
   background: rgb(217, 204, 228);
-  width: 98%;
-  padding: 25px;
+  width: 100%;
+  /* padding: 20px; */
   margin-block-end: 30px;
   border-radius: 5px;
   font-size: 24px;
   font-weight: 700;
+  display: flex;
 }
 .inner-container button{
   width: 80%;

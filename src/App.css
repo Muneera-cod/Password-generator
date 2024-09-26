@@ -47,6 +47,7 @@ body{
   height: 30px;
   margin-top: 6px;
   border:none;
+  
 
 }
 
@@ -82,4 +83,9 @@ body{
 select option:first-of-type{
   color: gray;
   font-weight: 600;
+}
+.sizecheckbox{
+  width: 20px;
+  height: 20px;
+  accent-color: blueviolet;
 }

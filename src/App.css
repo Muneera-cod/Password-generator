@@ -1,60 +1,63 @@
-
 body{
   margin:0;
   box-sizing: border-box;
+  font-size: 14px;
 }
 .outer-container{
-  min-width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background-color:rgb(245, 249, 249);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 3rem;
 }
 .inner-container{
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 50%;
   height: 50%;
   background:white;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 30px;
+  padding: 1rem;
 }
 .input-div{
- 
-  width: fit-content;
+  width: 100%;
   height: 90%;
   display: flex;
   flex-direction: column;
-  padding: 10px 30px;
+  padding: 10px 30px; 
   
 }
 .input-div div:first-of-type{
   align-items: center;
   justify-content: center;
 }
+
 .input-div label{
   display: flex;
   justify-content: space-between;
   column-gap: 100px;
+  overflow: hidden;
   &:hover{
     background: rgb(236, 235, 237);
   }
 }
-.input-div select{
+
+.input-div select {
   height: 30px;
   margin-top: 6px;
   border:none;
   
-
+ 
 }
-
 
 .input-div p{
    flex-basis: 80%;
 }
+
 .screen{
   background: rgb(217, 204, 228);
   width: 100%;
@@ -76,10 +79,10 @@ body{
   &:hover{
     background: rgb(217, 204, 228);
   border:2px solid rgb(57, 12, 97);
-  color:rgb(57, 12, 97);
-    
+  color:rgb(57, 12, 97); 
   }
 }
+
 select option:first-of-type{
   color: gray;
   font-weight: 600;
@@ -88,4 +91,19 @@ select option:first-of-type{
   width: 20px;
   height: 20px;
   accent-color: blueviolet;
+}
+@media (max-width:1000px) {
+  .inner-container{
+    width: 70%;
+  }
+}
+@media (max-width:800px) {
+  .inner-container{
+    width: 65%;
+  }
+}
+@media (max-width:400px) {
+  .inner-container{
+    width: 90%;
+  }
 }
